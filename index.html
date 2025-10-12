@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Andika Dirma Yuda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Space+Grotesk:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        body,
+        html {
+            width: 100%;
+            min-width: 0;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #111;
+            --fg: #fff;
+            --accent: #00ffe7;
+            --muted: #888;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'Fira Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 2.5rem 0 1.5rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .avatar-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 1.2rem auto;
+            box-shadow: 0 6px 32px #00ffe733, 0 2px 12px #0002;
+            border: 3px solid #181818;
+            background: #222;
+        }
+
+        header h1 {
+            font-family: 'Space Grotesk', 'Fira Mono', monospace;
+            font-size: 2.7rem;
+            margin: 0;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        header p {
+            color: var(--muted);
+            margin: 0.7rem 0 0 0;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        nav a {
+            color: var(--fg);
+            text-decoration: none;
+            font-weight: bold;
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+            transition: border 0.2s, color 0.2s;
+            font-family: 'Space Grotesk', 'Fira Mono', monospace;
+            font-size: 1.08rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        main {
+            flex: 1;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2.2rem 1rem 1rem 1rem;
+            width: 100%;
+        }
+
+        section {
+            margin-bottom: 2.2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+            width: 100%;
+            min-width: 0;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        section:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #222;
+            margin: 2.5rem 0 2.5rem 0;
+        }
+
+        h2 {
+            border-left: 4px solid var(--accent);
+            padding-left: 0.7rem;
+            font-size: 1.55rem;
+            margin-bottom: 1.3rem;
+            margin-top: 0.5rem;
+            font-family: 'Space Grotesk', 'Fira Mono', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.3rem 1.1rem;
+            width: 100%;
+            min-width: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .project {
+            background: #181818;
+            border-radius: 14px;
+            padding: 1.2rem 1.1rem 1.2rem 1.1rem;
+            border: 1px solid #222;
+            transition: border 0.2s, box-shadow 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px #0002;
+            width: 100%;
+            min-width: 0;
+            margin-bottom: 1.1rem;
+        }
+
+        .project:hover {
+            border: 1px solid var(--accent);
+            box-shadow: 0 4px 24px #00ffe733;
+            transform: translateY(-4px) scale(1.025);
+        }
+
+        .project-title {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .skill {
+            background: #222;
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+        }
+
+        .code-bg {
+            background: #181818;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            font-family: 'Fira Mono', monospace;
+            box-shadow: 0 1px 8px #00ffe71a;
+            overflow-x: auto;
+            word-break: break-word;
+
+            .contact-btn {
+                display: inline-block;
+                background: var(--accent);
+                color: #111;
+                font-family: 'Space Grotesk', 'Fira Mono', monospace;
+                font-weight: bold;
+                padding: 0.7rem 2.2rem;
+                border-radius: 999px;
+                font-size: 1.08rem;
+                border: none;
+                margin-top: 1.2rem;
+                margin-bottom: 0.5rem;
+                cursor: pointer;
+                box-shadow: 0 2px 16px #00ffe733;
+                transition: background 0.2s, color 0.2s, transform 0.2s;
+            }
+
+            .contact-btn:hover {
+                background: #fff;
+                color: var(--accent);
+                transform: scale(1.04);
+            }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 1.5rem 0 0.5rem 0;
+            font-size: 0.97rem;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            color: var(--accent);
+            font-size: 1.18rem;
+            font-family: 'Space Grotesk', 'Fira Mono', monospace;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            margin-top: 0.1rem;
+            letter-spacing: 1px;
+        }
+
+        .project-desc {
+            color: var(--fg);
+            font-size: 1.01rem;
+            margin-bottom: 0.6rem;
+            margin-top: 0.1rem;
+        }
+
+        .project-features {
+            color: var(--muted);
+            font-size: 0.98rem;
+            margin: 0 0 0.6rem 0.7rem;
+            padding-left: 1.1rem;
+        }
+
+        .project-features li {
+            margin-bottom: 0.3rem;
+            line-height: 1.5;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 0.2rem;
+            margin-bottom: 0.1rem;
+            color: var(--accent);
+            background: #181818;
+            border: 1.5px solid var(--accent);
+            border-radius: 999px;
+            padding: 0.38rem 1.3rem;
+            font-size: 0.98rem;
+            font-family: 'Space Grotesk', 'Fira Mono', monospace;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 8px #00ffe71a;
+        }
+
+        .project-link:hover {
+            background: var(--accent);
+            color: #181818;
+            border: 1.5px solid #fff;
+            box-shadow: 0 2px 16px #00ffe733;
+        }
+
+        .exp-edu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .exp-list,
+        .edu-list {
+            flex: 1 1 320px;
+        }
+
+        .exp-item,
+        .edu-item {
+            background: #181818;
+            border-radius: 10px;
+            margin-bottom: 1.1rem;
+            padding: 1.1rem 1rem 1rem 1rem;
+            border: 1px solid #232323;
+            box-shadow: 0 1px 8px #00ffe71a;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .exp-role,
+        .edu-degree {
+            color: var(--accent);
+            font-size: 1.08rem;
+            font-family: 'Space Grotesk', 'Fira Mono', monospace;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .exp-meta,
+        .edu-meta {
+            color: var(--muted);
+            font-size: 0.97rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .exp-desc {
+            color: var(--fg);
+            font-size: 0.98rem;
+            line-height: 1.5;
+            margin-bottom: 0.1rem;
+        }
+
+        @media (max-width: 900px) {
+            main {
+                padding: 1.2rem 0.5rem 1rem 0.5rem;
+                width: 100%;
+            }
+
+            .exp-edu {
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                flex-wrap: wrap;
+                font-size: 0.98rem;
+            }
+
+            .exp-list,
+            .edu-list {
+                width: 100%;
+            }
+
+            .project,
+            .exp-item,
+            .edu-item {
+                width: 100%;
+                min-width: 0;
+            }
+
+            header {
+                padding: 1.2rem 0 1rem 0;
+            }
+
+            .avatar-img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 0.8rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: 1.1rem;
+                margin: 1.2rem 0 0.7rem 0;
+                flex-wrap: wrap;
+                font-size: 0.98rem;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+                gap: 0.7rem;
+                width: 100%;
+            }
+
+            .exp-edu {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .exp-list,
+            .edu-list {
+                width: 100%;
+            }
+
+            .project,
+            .exp-item,
+            .edu-item {
+                width: 100%;
+                min-width: 0;
+            }
+
+            section {
+                padding-left: 0;
+                padding-right: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            nav {
+                font-size: 0.92rem;
+            }
+
+            .skills {
+                gap: 0.4rem;
+            }
+
+            .skill {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.7rem;
+            }
+
+            .project-features {
+                font-size: 0.9rem;
+                margin-left: 0.3rem;
+                padding-left: 0.5rem;
+            }
+
+            .code-bg {
+                font-size: 0.95rem;
+                padding: 0.7rem;
+            }
+
+            .exp-desc {
+                font-size: 0.92rem;
+            }
+
+            .project-desc {
+                font-size: 0.95rem;
+            }
+
+            .divider {
+                margin: 1.2rem 0 1.2rem 0;
+            }
+
+            main {
+                padding: 0.5rem 0.1rem 0.5rem 0.1rem;
+                width: 100%;
+            }
+
+            .avatar-img {
+                width: 56px;
+                height: 56px;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+                padding-left: 0.4rem;
+            }
+
+            .project-title {
+                font-size: 1rem;
+            }
+
+            .project-link {
+                font-size: 0.9rem;
+                padding: 0.3rem 1rem;
+                margin-bottom: 0.1rem;
+            }
+
+            .exp-role,
+            .edu-degree {
+                font-size: 1rem;
+            }
+
+            .exp-meta,
+            .edu-meta {
+                font-size: 0.9rem;
+            }
+
+            .exp-item,
+            .edu-item {
+                padding: 0.7rem 0.5rem 0.7rem 0.5rem;
+                width: 100%;
+                min-width: 0;
+            }
+
+            .skills {
+                gap: 0.4rem;
+            }
+
+            .skill {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.7rem;
+            }
+
+            .project-features {
+                font-size: 0.9rem;
+                margin-left: 0.3rem;
+                padding-left: 0.5rem;
+            }
+
+            .code-bg {
+                font-size: 0.95rem;
+                padding: 0.7rem;
+            }
+
+            .exp-desc {
+                font-size: 0.92rem;
+            }
+
+            .project-desc {
+                font-size: 0.95rem;
+            }
+
+            .divider {
+                margin: 1.2rem 0 1.2rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="programmer.png" alt="Avatar" class="avatar-img" />
+        <h1>Andika Dirma Yuda</h1>
+        <p>Web Developer &mdash; System Analyst</p>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="code-bg">
+                <span>// Passionate about clean code, elegant UI, and seamless UX.</span><br>
+                <span>// I build web solutions that are fast, accessible, and beautiful.</span>
+            </div>
+            <p>
+                Hi, I'm <b>adrmyd</b>, Saya adalah seorang Web Developer independen yang berfokus pada pengembangan
+                sistem berbasis Website.
+                Saya memiliki pengalaman lebih dari 3 tahun dalam merancang dan mengimplementasikan solusi digital
+                yang efisien dan user-friendly.
+
+                Saya menguasai berbagai teknologi web modern sserta, memiliki kemampuan dalam desain UI/UX untuk
+                memastikan pengalaman pengguna yang optimal.
+            </p>
+        </section>
+        <hr class="divider" />
+        <section id="experience">
+            <h2>Experience &amp; Education</h2>
+            <div class="exp-edu">
+                <div class="exp-list">
+
+                    <div class="exp-item">
+                        <div class="exp-role">Freelance Web Developer</div>
+                        <div class="exp-meta">Remote &mdash; 2020 - Sekarang</div>
+                        <div class="exp-desc">Mengembangkan berbagai website company profile, landing page, dan sistem
+                            informasi untuk UMKM dan startup secara independen.</div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-role">Internship - Web Developer</div>
+                        <div class="exp-meta">PT. Akbarindo Karomah Utama &mdash; 2024 (6 Bulan)</div>
+                        <div class="exp-desc">Memelihara sistem
+                            internal perusahaan</div>
+                    </div>
+                </div>
+                <!-- Education -->
+                <div class="edu-section">
+                    <h2>Education</h2>
+                    <div class="edu-list">
+                        <div class="edu-item">
+                            <div class="edu-degree">SD</div>
+                            <div class="edu-meta">Sekolah Dasar Lubai &mdash; 2006-2012</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-degree">SMP</div>
+                            <div class="edu-meta">Pondok Pesantren Al-ittifaqiah Indralaya &mdash; 2012-2015</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-degree">SMA</div>
+                            <div class="edu-meta">MAN 1 Prabumulih &mdash; 2015-2018</div>
+                        </div>
+                        <div class="edu-item">
+                            <div class="edu-degree">S1 Sistem Informasi</div>
+                            <div class="edu-meta">Universitas Multi Data Palembang &mdash; 2019 - 2025</div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <hr class="divider" />
+
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                <!-- Project 1 -->
+                <div class="project">
+                    <div class="project-title">Seikat Bungo</div>
+                    <div class="code-bg">// Laravel, MySQL, Tailwind CSS, JavaScript, Blade</div>
+                    <p class="project-desc">
+                        Platform e-commerce untuk penjualan dan pembelian produk bunga secara online. Fitur: katalog
+                        produk, keranjang belanja, pembayaran, dashboard admin, laporan penjualan, pemesanan, pelanggan,
+                        stok, pendapatan, dan arus kas.
+                    </p>
+                    <ul class="project-features">
+                        <li><b>Manajemen Produk:</b> Admin dapat menambah, mengedit, dan menghapus produk dengan mudah.
+                        </li>
+                        <li><b>Keranjang Belanja:</b> Pengguna dapat menambahkan produk ke keranjang dan checkout dengan
+                            sistem pembayaran aman.</li>
+                        <li><b>Dashboard Admin:</b> Statistik penjualan, laporan keuangan, dan manajemen pesanan
+                            real-time.</li>
+                    </ul>
+                    <a href="https://seikatbungo.com" target="_blank" class="project-link">Live Demo</a>
+                </div>
+                <!-- Project 2 -->
+                <!-- <div class="project">
+                    <div class="project-title">Personal Blog Platform</div>
+                    <div class="code-bg">// Next.js, Tailwind CSS</div>
+                    <p class="project-desc">
+                        Platform blog pribadi dengan dukungan markdown dan pencarian instan.
+                    </p>
+                    <ul class="project-features">
+                        <li><b>Markdown Support:</b> Tulis dan kelola postingan dengan format markdown.</li>
+                        <li><b>Instant Search:</b> Cari postingan secara real-time.</li>
+                        <li><b>Responsive Design:</b> Tampilan optimal di semua perangkat.</li>
+                    </ul>
+                    <a href="#" class="project-link">Live Demo</a>
+                </div> -->
+                <!-- Project 3 -->
+                <!-- <div class="project">
+                    <div class="project-title">Portfolio Generator</div>
+                    <div class="code-bg">// Vue.js, Firebase</div>
+                    <p class="project-desc">
+                        Generator portofolio untuk developer dengan live preview dan deployment mudah.
+                    </p>
+                    <ul class="project-features">
+                        <li><b>Live Preview:</b> Lihat perubahan secara langsung sebelum publish.</li>
+                        <li><b>Easy Deploy:</b> Deploy portofolio ke hosting dengan satu klik.</li>
+                        <li><b>Customizable:</b> Mudah diubah sesuai kebutuhan.</li>
+                    </ul>
+                    <a href="#" class="project-link">Live Demo</a>
+                </div> -->
+                <!-- Project 4 -->
+                <!-- <div class="project">
+                    <div class="project-title">Minimalist Landing Page</div>
+                    <div class="code-bg">// Vanilla JS, CSS Grid</div>
+                    <p class="project-desc">
+                        Template landing page minimalis dengan animasi halus dan desain responsif.
+                    </p>
+                    <ul class="project-features">
+                        <li><b>Smooth Animation:</b> Animasi transisi yang elegan.</li>
+                        <li><b>Responsive:</b> Tampilan tetap cantik di mobile dan desktop.</li>
+                        <li><b>Easy Custom:</b> Mudah diadaptasi untuk berbagai kebutuhan.</li>
+                    </ul>
+                    <a href="#" class="project-link">Live Demo</a>
+                </div> -->
+            </div>
+        </section>
+
+        <hr class="divider" />
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills">
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">React</span>
+                <span class="skill">Next.js</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">Express</span>
+                <span class="skill">MongoDB</span>
+                <span class="skill">UI/UX</span>
+                <span class="skill">Figma</span>
+                <span class="skill">Git</span>
+            </div>
+        </section>
+        <hr class="divider" />
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="code-bg">
+                // Let's build something great together!
+            </div>
+            <!-- whatsapp -->
+            <p>
+                WhatsApp: <a href="https://wa.me/6283865425936" style="color:var(--accent)" target="_blank">+62
+                    838-6542-5936</a>
+            </p>
+            <!-- instagram -->
+            <p>Instagram: <a href="https://instagram.com/adrmyd" style="color:var(--accent)"
+                    target="_blank">instagram.com/adrmyd</a></p>
+
+            <!-- <p style="margin-top:1.2rem;">LinkedIn: <a href="https://linkedin.com/in/yourprofile"
+                    style="color:var(--accent)" target="_blank">linkedin.com/in/yourprofile</a></p> -->
+
+            <!-- Github -->
+            <p>GitHub: <a href="https://github.com/andikadirmayuda" style="color:var(--accent)"
+                    target="_blank">github.com/andikadirmayuda</a></p>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 adrmyd. Crafted with &lt;/&gt; and ☕
+    </footer>
+</body>
+
+</html>
