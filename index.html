@@ -4,12 +4,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Andika Dirma Yuda</title>
+    <title>Portfolio | X</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Space+Grotesk:wght@700&display=swap"
         rel="stylesheet">
     <style>
+        /* Modal styles for image preview */
+        .modal-img-viewer {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-img-viewer.active {
+            display: flex;
+        }
+
+        .modal-img-viewer img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 0 24px #000;
+            background: #222;
+        }
+
+        .modal-img-viewer .close-modal-img {
+            position: absolute;
+            top: 32px;
+            right: 48px;
+            color: #fff;
+            font-size: 44px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.2s;
+            text-shadow: 0 2px 12px #000;
+        }
+
+        .modal-img-viewer .close-modal-img:hover {
+            color: #00ffe7;
+        }
+    </style>
+    <style>
+        /* Custom grid for project documentation gallery */
+        .projects-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+
+
+        /* Styling untuk project card */
+        .projects-gallery .img-title {
+            font-size: 0.3rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Deskripsi biar tidak memenuhi layar */
+        .projects-gallery .img-description {
+            font-size: 0.72rem;
+            line-height: 1.2;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            /* batasi maksimal 3 baris */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Khusus mobile supaya tetap 2 kolom tapi lebih rapi */
+        @media (max-width: 576px) {
+            .projects-gallery {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
         body,
         html {
             width: 100%;
@@ -49,15 +132,18 @@
         }
 
         .avatar-img {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
             margin: 0 auto 1.2rem auto;
-            box-shadow: 0 6px 32px #00ffe733, 0 2px 12px #0002;
-            border: 3px solid #181818;
+            box-shadow: 0 1px 10px #ffffff, 0 2px 12px #fff;
+            border: 1px solid #181818;
             background: #222;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 2px 12px #0002);
         }
 
         header h1 {
@@ -385,8 +471,8 @@
             }
 
             .avatar-img {
-                width: 80px;
-                height: 80px;
+                width: 50px;
+                height: 50px;
                 margin-bottom: 0.8rem;
             }
 
@@ -551,9 +637,14 @@
 </head>
 
 <body>
+    <!-- Modal for image preview -->
+    <div class="modal-img-viewer" id="modalImgViewer">
+        <span class="close-modal-img" id="closeModalImg">&times;</span>
+        <img src="" alt="Preview" id="modalImgContent" />
+    </div>
     <header>
-        <img src="programmer.png" alt="Avatar" class="avatar-img" />
-        <h1>Andika Dirma Yuda</h1>
+        <img src="who.png" alt="Avatar" class="avatar-img" />
+        <h1>x</h1>
         <p>Web Developer &mdash; System Analyst</p>
     </header>
     <nav>
@@ -575,7 +666,7 @@
                 Saya memiliki pengalaman lebih dari 3 tahun dalam merancang dan mengimplementasikan solusi digital
                 yang efisien dan user-friendly.
 
-                Saya menguasai berbagai teknologi web modern sserta, memiliki kemampuan dalam desain UI/UX untuk
+                Saya menguasai berbagai teknologi web modern serta, memiliki kemampuan dalam desain UI/UX untuk
                 memastikan pengalaman pengguna yang optimal.
             </p>
         </section>
@@ -599,11 +690,11 @@
                     </div>
                 </div>
                 <!-- Education -->
-                <div class="edu-section">
-                    <h2>Education</h2>
-                    <div class="edu-list">
-                        <!-- <div class="edu-item"> -->
-                        <!-- <div class="edu-degree">SD</div>
+                <!-- <div class="edu-section"> -->
+                <!-- <h2>Education</h2> -->
+                <!-- <div class="edu-list"> -->
+                <!-- <div class="edu-item"> -->
+                <!-- <div class="edu-degree">SD</div>
                             <div class="edu-meta">Sekolah Dasar Lubai &mdash; 2006-2012</div>
                         </div>
                         <div class="edu-item">
@@ -614,12 +705,12 @@
                             <div class="edu-degree">SMA</div>
                             <div class="edu-meta">MAN 1 Prabumulih &mdash; 2015-2018</div>
                         </div> -->
-                        <div class="edu-item">
-                            <div class="edu-degree">S1 Sistem Informasi</div>
-                            <div class="edu-meta">Universitas Multi Data Palembang &mdash; 2019 - 2025</div>
-                        </div>
-                    </div>
-                </div>
+                <!-- <div class="edu-item">
+                            <div class="edu-degree">S1 x</div>
+                            <div class="edu-meta">x &mdash; x</div>
+                        </div> -->
+                <!-- </div> -->
+            </div>
         </section>
         <hr class="divider" />
 
@@ -692,6 +783,340 @@
         </section>
 
         <hr class="divider" />
+        <section id="documentation">
+            <h2>Project Documentation</h2>
+            <div class="projects-gallery">
+                <!-- Contoh gambar, ganti src dan alt sesuai project Anda -->
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard01.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin #01 - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.72rem;">Detail Lengkap Dashboard Admin
+                        #01 dengan fitur:
+                        Total Pelanggan, Total Produk, Total Pesanan Online, Total Penjualan, Pendapatan Bulanan,
+                        Pemasukan, Pengeluaran, Saldo Bersih, Grafik Performa Penjualan, Performa Pemesanan.</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard02.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin #02 - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.72rem;">Detail Lengkap Dashboard Admin
+                        #02 dengan fitur:
+                        Grafik Performa Berdasarkan Kategori Produk, Performa Bouquet Berdasarkan Kategori Bouquet.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard03.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Tampilan dashboard admin untuk
+                        monitoring
+                        penjualan dan pesanan.</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard04.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Tampilan dashboard admin untuk
+                        monitoring
+                        penjualan dan pesanan.</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard05.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Tampilan dashboard admin untuk
+                        monitoring
+                        penjualan dan pesanan.</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard06.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Tampilan dashboard admin untuk
+                        monitoring
+                        penjualan dan pesanan.</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard07.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Tampilan dashboard admin untuk
+                        monitoring
+                        penjualan dan pesanan.</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Dashboard08.png" alt="Dashboard Project 1" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Dashboard
+                        Admin - Seikat Bungo</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Tampilan dashboard admin untuk
+                        monitoring
+                        penjualan dan pesanan.</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Menu Pelanggan.png" alt="Menu Pelanggan" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">
+                        Menu Pelanggan</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Mengelola dan Menampilkan Detail
+                        Data
+                        Pelanggan serta Riwayat Transaksi data Pelanggan baik secara
+                        Online dan Oflline</div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Data Produk.png" alt="Data Produk" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">
+                        Menu Produk</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">
+                        Mengelola dan Menampilkan Detail Data Produk Bunga yang tersedia di Toko beserta Kategori
+                        Produk.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Menu Inventaris.png" alt="Menu Inventaris" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Menu
+                        Inventaris</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Mengelola dan Menampilkan Detail
+                        Data
+                        Inventaris Produk Bunga yang tersedia di Toko beserta Stoknya.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Laporan Pelanggan Online & Ofline.png" alt="Laporan Pelanggan" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Laporan
+                        Pelanggan</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan Laporan Data
+                        Pelanggan baik secara
+                        Online dan Offline dalam bentuk Grafik dan Tabel.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Laporan Stok Produk.png" alt="Laporan Stok Produk" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Laporan
+                        Stok Produk</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan Laporan Data Stok
+                        Produk
+                        secara lengkap dan detail, meliputi Kode Produk, Nama Produk, Kategori, Stok Awal, Stok Masuk,
+                        Stok Keluar, Stok Akhir, serta Status Ketersediaan Produk di Toko.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Laporan Pemesanan.png" alt="Laporan Pemesanan" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Laporan
+                        Pemesanan</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan Laporan Data
+                        Pemesanan Online Dengan Rincian Tanggal, Nama Pelanggan, Produk yang Dipesan, Jumlah, Total
+                        Harga,
+                        Status Pembayaran, serta Menghitung total keseluruhan pendapatan dan pengeluaran pemesanan baik
+                        dari sisi cash, transfer,
+                        debit, maupun
+                        e-wallet.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Laporan Penjualan.png" alt="Laporan Penjualan" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Laporan
+                        Penjualan</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan Laporan Data
+                        Penjualan Produk Bunga Dengan Rincian Tanggal, Nama Produk, Kategori, Jumlah Terjual, Total
+                        Harga,
+                        serta Menghitung total keseluruhan pendapatan dan pengeluaran penjualan baik dari sisi cash,
+                        transfer,
+                        debit, maupun
+                        e-wallet.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Laporan Pendapatan.png" alt="Laporan Pendapatan" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Laporan
+                        Pendapatan</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan Laporan Keseluruhan
+                        Pendapatan dari
+                        hasil
+                        penjualan dan pemesanan produk bunga baik secara online maupun offline secara lengkap dan
+                        terperinci.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Laporan Cash Flow.png" alt="Laporan Cashflow" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Laporan
+                        Cash Flow</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan Laporan Arus Kas
+                        (Cash Flow) secara
+                        lengkap dan
+                        terperinci,
+                        meliputi Pemasukan, Pengeluaran, serta Saldo Bersih dalam periode waktu tertentu.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Halaman Utama Produk.png" alt="halaman utama produk" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Halaman Utama
+                        Produk</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan daftar produk bunga
+                        yang
+                        tersedia
+                        lengkap dengan
+                        gambar, nama produk, kategori, harga, dan tombol Pop Up Memilih Daftar Pilihan Harga dan
+                        menambahkan produk ke keranjang
+                        belanja.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Halaman Bouquet.png" alt="Halaman Bouquet" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Halaman
+                        Bouquet</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan daftar produk
+                        bouquet bunga yang
+                        tersedia
+                        lengkap dengan
+                        gambar, nama produk, kategori, harga, dan tombol Pop Up Memilih Daftar Pilihan Harga dan
+                        menambahkan produk ke keranjang
+                        belanja.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Halaman Custom Bouquet.png" alt="Halaman Custom Bouquet" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Halaman
+                        Custom Bouquet</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan daftar produk
+                        custom bouquet bunga yang
+                        tersedia
+                        lengkap dengan
+                        gambar, nama produk, kategori, harga, dan tombol Pop Up Memilih Daftar Pilihan Harga dan
+                        menambahkan produk ke keranjang
+                        belanja.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Halaman Keranjang Dan CheckOut.png" alt="Halaman Keranjang Dan CheckOut"
+                        class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Halaman
+                        Keranjang Dan CheckOut</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan detail produk yang
+                        telah
+                        ditambahkan ke
+                        keranjang belanja, dengan rincian gambar produk, nama produk, harga, jumlah, subtotal, serta
+                        tombol untuk
+                        mengupdate jumlah,
+                        menghapus produk dari keranjang, dan melanjutkan ke proses checkout pembayaran.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Halaman Detail Pesanan Online.png" alt="Halaman Detail Pesanan Online"
+                        class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Halaman
+                        Detail Pesanan Online</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan detail lengkap
+                        pesanan online yang telah
+                        dilakukan oleh
+                        pelanggan,
+                        termasuk informasi produk, jumlah, harga, total pembayaran, metode pembayaran, status
+                        pesanan, dan
+                        informasi
+                        pengiriman.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Halaman Invoice.png" alt="Halaman Invoice" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Halaman
+                        Invoice</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan invoice atau faktur
+                        pembayaran
+                        secara
+                        rinci untuk
+                        pesanan yang telah dilakukan oleh pelanggan, termasuk informasi produk, jumlah, harga, total
+                        pembayaran,
+                        metode pembayaran, dan detail pelanggan.
+                    </div>
+                </div>
+                <div
+                    style="background:#181818;border-radius:12px;padding:1rem;border:1px solid #232323;box-shadow:0 1px 8px #00ffe71a;">
+                    <img src="Halaman Lacak Pesanan.png" alt="Halaman Lacak Pesanan" class="previewable-img"
+                        style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 2px 12px #00ffe733;margin-bottom:0.7rem;cursor:pointer;">
+                    <div class="img-title"
+                        style="color:var(--accent);font-weight:600;font-size:0.8rem;margin-bottom:0.2rem;">Halaman
+                        Lacak Pesanan</div>
+                    <div class="img-desc" style="color:var(--muted);font-size:0.82rem;">Menampilkan status terkini dari
+                        pesanan yang telah
+                        dilakukan oleh
+                        pelanggan,
+                        termasuk informasi pengiriman, estimasi waktu tiba, dan riwayat pembaruan status pesanan.
+                    </div>
+                </div>
+            </div>
+            <div style="color:var(--muted);font-size:0.98rem;">*Gambar di atas adalah Documetasi dari
+                beberapa project yang telah saya kerjakan, Klik foto untuk melihat detailnya.</div>
+        </section>
+
+        <hr class="divider" />
         </section>
         <section id="skills">
             <h2>Skills</h2>
@@ -718,8 +1143,8 @@
             </div>
             <!-- whatsapp -->
             <p>
-                WhatsApp: <a href="https://wa.me/6283865425936" style="color:var(--accent)" target="_blank">+62
-                    838-6542-5936</a>
+                WhatsApp: <a href="https://wa.me/6283865425936" style="color:var(--accent)"
+                    target="_blank">+6283865425936</a>
             </p>
             <!-- instagram -->
             <p>Instagram: <a href="https://instagram.com/adrmyd" style="color:var(--accent)"
@@ -729,13 +1154,44 @@
                     style="color:var(--accent)" target="_blank">linkedin.com/in/yourprofile</a></p> -->
 
             <!-- Github -->
-            <p>GitHub: <a href="https://github.com/andikadirmayuda" style="color:var(--accent)"
-                    target="_blank">github.com/andikadirmayuda</a></p>
+            <!-- <p>GitHub: <a href="https://github.com/andikadirmayuda" style="color:var(--accent)"
+                    target="_blank">github.com/andikadirmayuda</a></p> -->
         </section>
     </main>
     <footer>
         &copy; 2025 adrmyd. Crafted with &lt;/&gt; and ☕
     </footer>
+
+    <script>
+        // Modal image preview logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('modalImgViewer');
+            const modalImg = document.getElementById('modalImgContent');
+            const closeModal = document.getElementById('closeModalImg');
+            // Select all images to be previewed
+            const imgs = document.querySelectorAll('.previewable-img');
+            imgs.forEach(img => {
+                img.addEventListener('click', function () {
+                    modal.classList.add('active');
+                    modalImg.src = this.src;
+                    modalImg.alt = this.alt;
+                });
+            });
+            closeModal.onclick = function () {
+                modal.classList.remove('active');
+            };
+            modal.onclick = function (e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            };
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
